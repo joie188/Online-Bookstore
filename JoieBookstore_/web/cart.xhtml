@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Shopping Cart</title>
+   </h:head>
+   <h:body>
+      <h3>Shopping Cart contains #{cartBean.itemCount} books, total price $#{cartBean.subTotalString}</h3>
+      <h:form>
+          <h:selectOneRadio value = "#{cartBean.selectedChange}" layout = "pageDirection">
+              <f:selectItems value="#{cartBean.addedBooks}"/>
+          </h:selectOneRadio>
+          <h:commandButton value="More" action="#{cartBean.more}"/>
+          <h:commandButton value="Less" action="#{cartBean.less}"/>
+      </h:form>
+      <p><h:outputLink value="index.xhtml"> Continue Shopping </h:outputLink></p>
+      <p><h:outputLink value="checkout.xhtml"> Checkout </h:outputLink></p>
+   </h:body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!-- index.xhtml -->
+<!-- Validating user input -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+      <title>Joie's Bookstore</title>
+      <h:outputStylesheet name="style.css" library="css"/>
+   </h:head>
+   <h:body>
+      <h:form>
+         <h3>Checkout Joie's Online Bookstore</h3>
+         <pre>#{checkoutBean.payDetail}</pre> 
+         <h>Charge and Ship to:</h>
+         <br></br>
+         <br></br>
+         <h:panelGrid columns="3">
+            <h:outputText value="Name:"/>
+            <h:inputText id="nameInputText" required="true"
+               requiredMessage="Please enter your name"
+               value="#{checkoutBean.name}" 
+               validatorMessage="Name must be fewer than 30 characters">
+               <f:validateLength maximum="30" />
+            </h:inputText>
+            <h:message id="nameMessage" for="nameInputText"
+               styleClass="error"/>
+            <h:outputText value="Address:"/>
+            <h:inputText id="addressInputText" required="true"
+               requiredMessage="Please enter a valid address"
+               value="#{checkoutBean.address}"
+               validatorMessage="Invalid address format">
+            </h:inputText>
+            <h:message id="addressMessage" for="addressInputText"
+               styleClass="error"/>
+            <h:outputText value="Card Number:"/>
+            <h:inputText id="cardNumberInputText" required="true"
+               requiredMessage="Please enter a valid card number"
+               value="#{checkoutBean.cardNumber}"
+               validatorMessage="Invalid card number format">
+                <f:validateLength minimum="4" maximum="16" />
+            </h:inputText>
+            <h:message id="cardNumberMessage" for="cardNumberInputText"
+               styleClass="error"/>
+         </h:panelGrid>
+         <br></br>
+         <h:commandButton value="Make Payment">
+            <f:ajax execute="nameInputText addressInputText cardNumberInputText"
+               render=
+               "nameMessage addressMessage cardNumberMessage resultOutputText"/>
+         </h:commandButton>
+         <h:outputText id="resultOutputText" escape="false"
+            value="#{checkoutBean.result}"/>
+      </h:form>
+      <p><h:outputLink value="index.xhtml"> Continue Shopping </h:outputLink></p>
+   </h:body>
+</html>
+
+<!--
+**********************************************************************
+* (C) Copyright 1992-2012 by Deitel & Associates, Inc. and           *
+* Pearson Education, Inc. All Rights Reserved.                       *
+*                                                                    *
+* DISCLAIMER: The authors and publisher of this book have used their *
+* best efforts in preparing the book. These efforts include the      *
+* development, research, and testing of the theories and programs    *
+* to determine their effectiveness. The authors and publisher make   *
+* no warranty of any kind, expressed or implied, with regard to      *
+* these programs or to the documentation contained in these books.   *
+* The authors and publisher shall not be liable in any event for     *
+* incidental or consequential damages in connection with, or         *
+* arising out of, the furnishing, performance, or use of these       *
+* programs.                                                          *
+**********************************************************************
+-->
+
